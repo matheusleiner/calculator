@@ -146,7 +146,7 @@ function equal() {
         case "**":
             result = Math.pow(n1, 2); break
         case "%":
-            result = n1 * 100 / n2; break
+            result = n1 * n2 / 100; break
         case "+":
             result = n1 + n2; break
         case "-":
