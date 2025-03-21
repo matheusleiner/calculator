@@ -6,7 +6,7 @@ operator = ""
 dot = false
 
 function sno() {
-    if (operator == "**" || operator == "sqr" || operator == "!") {return false} else {return true}
+    if (operator == "**" || operator == "!") {return false} else {return true}
 }
 
 function addNumber(number) {
@@ -103,16 +103,66 @@ function CE() {
             dot = false
         }
         secondNumber = ""
+        output = firstNumber + operator
     } else {
         firstNumber = ""
         operator = ""
         dot = false
+        output = ""
     }
     show()
 }
 
+function swap() {
+    if (operator === "") {
+        firstNumber = (parseFloat(firstNumber) * -1).toString();
+    } else {
+        secondNumber = (parseFloat(secondNumber) * -1).toString();
+    }
+    output = firstNumber + operator + secondNumber;
+    show();
+}
+
+function fatorial(number) {
+    number = parseFloat(number)
+    if (number === 0 || number === 1) {
+        return 1;
+    }
+    return number * fatorial(number - 1);
+}
+
 function equal() {
     if (output.endsWith(".")) {return}
+    if (sno() && secondNumber.length === 0) {return}
+    if (operator === "") {return}
+    const n1 = parseFloat(firstNumber)
+    const n2 = parseFloat(secondNumber)
+    let result;
+    switch (operator) {
+        case "sqr":
+            result = Math.sqrt(n2); break
+        case "!":
+            result = fatorial(n1); break
+        case "**":
+            result = Math.pow(n1, 2); break
+        case "%":
+            result = n1 * 100 / n2; break
+        case "+":
+            result = n1 + n2; break
+        case "-":
+            result = n1 - n2; break
+        case "*":
+            result = n1 * n2; break
+        case "/":
+            result = n1 / n2; break
+        default:
+            break
+    }
+    firstNumber = String(result)
+    output = String(result)
+    secondNumber = ""
+    operator = ""
+    show()
 }
 
 function show() {
